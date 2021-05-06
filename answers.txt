@@ -1,0 +1,75 @@
+CREATE TABLE person (id SERIAL PRIMARY KEY, name VARCHAR(20), age int, height int, city varchar(16), favorite_color varchar(16))
+
+INSERT INTO person (name, age, height, city, favorite_color) VALUES ('steven', 29, 190, 'lehi', 'red'), ('amber', 30, 155, 'lehi', 'purple'), ('sunny', 2, 15, 'lehi', 'yellow'), ('luna', 3, 25, 'lehi', 'blue'), ('tara', 53, 180, 'alpine', 'pink');
+
+select * from person order by height desc;
+
+select * from person order by height;
+
+select * from person order by age desc;
+
+select * from person where age > 20;
+
+select * from person where age = 18;
+
+select * from person where age < 20 or age > 30;
+
+select * from person where age != 27;
+
+select * from person where favorite_color != 'red';
+
+select * from person where favorite_color != 'red' and favorite_color != 'blue';
+
+select * from person where favorite_color = 'orange' or favorite_color = 'green';
+
+select * from person where favorite_color in ('orange', 'green', 'blue');
+
+select * from person where favorite_color in ('yellow', 'purple');
+
+create table orders (order_id serial primary key, person_id int, product_name varchar(100), product_price int, quantity int);
+
+insert into orders (person_id, product_name, product_price, quantity) values (0, 'burger', 8, 1), (0, 'fries', 3, 1), (1, 'salad', 10, 1), (1, 'cookie', 2, 2), (2, 'biscut', 1, 4);
+
+select * from orders;
+
+select sum(quantity) from orders;
+
+select sum(quantity * product_price) from orders;
+
+select person_id, sum(quantity * product_price) from orders group by person_id;
+
+insert into artist (name) values ('lad'), ('bobbie'), ('don');
+
+select * from artist order by name desc limit 10;
+
+select * from artist order by name limit 5;
+
+select * from artist where name like 'Black%';
+
+select * from artist where name like '%Black%';   
+
+select first_name, last_name from employee where city = 'Calgary';
+
+select birth_date from employee order by birth_date desc limit 1;
+
+select birth_date from employee order by birth_date limit 1;
+
+select * from employee where reports_to = (select employee_id from employee where first_name = 'Nancy' and last_name = 'Edwards');
+
+select count(*) from employee where city = 'Lethbridge';
+
+select count(*) from invoice where billing_country = 'USA';
+
+select total from invoice order by total desc limit 1;
+
+select total from invoice order by total limit 1;
+
+select * from invoice where total > 5;
+
+select count(*) from invoice where total < 5;
+
+select count(*) from invoice where billing_state in ('CA', 'TX', 'AZ')
+
+select avg(total) from invoice;
+
+select sum(total) from invoice; 
